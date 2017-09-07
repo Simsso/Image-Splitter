@@ -19,6 +19,7 @@ namespace ImageSplitter
         public SplitterControl(Canvas canvas, System.Windows.Controls.Image imageControl, Bitmap image)
         {
             this.canvas = canvas;
+            this.canvas.Children.Clear();
             this.imageControl = imageControl;
             this.image = image;
 
