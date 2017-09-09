@@ -3,6 +3,10 @@ using System.Drawing;
 
 namespace ImageSplitter
 {
+    /// <summary>
+    /// This class wraps a two dimensional array of Bitmaps.
+    /// It has several that manipulate these Bitmaps, e.g. resizing all to equal size.
+    /// </summary>
     class PartProcessor : IDisposable
     {
         private readonly Bitmap[][] parts;
@@ -18,7 +22,11 @@ namespace ImageSplitter
         }
 
 
-        // Determines the minimum height and minimum width across all parts.
+        /// <summary>
+        /// Determines the minimum height and minimum width across all parts.
+        /// If one part has the size 100x200 and another one 500x100, 100x100 will be returned.
+        /// </summary>
+        /// <returns>The lowest height and width across all parts.</returns>
         private Size GetMinSize()
         {
             Size min = new Size(parts[0][0].Width, parts[0][0].Height);
@@ -33,6 +41,11 @@ namespace ImageSplitter
             return min;
         }
 
+
+        /// <summary>
+        /// Crops all bitmaps in the parts array. The size is the result of GetMinSize.
+        /// Each bitmap will be cropped in a way that preserves the pixels in the center.
+        /// </summary>
         public void CropParts()
         {
             for (int x = 0; x < parts.Length; x++)
@@ -50,6 +63,14 @@ namespace ImageSplitter
             }
         }
 
+        
+        /// <summary>
+        /// Scales the parts that are stored in the parts attribute to the desired size.
+        /// If the proportions do not match, the parts will be cropped to match the width-height-ratio of the parameter.
+        /// This cropping is conducted in a way that the center parts of the image will be preferred. 
+        /// If size is e.g. 100x100 and the part has a size of 240x200, it will be scaled to 100x100 and 20 pixels on the left and on the right will be dropped.
+        /// </summary>
+        /// <param name="size">The size that all parts will have after the function call.</param>
         public void ScaleParts(Size size)
         {
             for (int x = 0; x < parts.Length; x++)
@@ -82,6 +103,9 @@ namespace ImageSplitter
             }
         }
 
+        /// <summary>
+        /// All bitmaps need to be disposed. The function takes care of it and thereby prevents memory leaks.
+        /// </summary>
         public void Dispose()
         {
             for (int x = 0; x < parts.Length; x++)

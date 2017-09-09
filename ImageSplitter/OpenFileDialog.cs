@@ -2,6 +2,9 @@
 
 namespace ImageSplitter
 {
+    /// <summary>
+    /// Helper class that wraps the Microsoft.Win32.OpenFileDialog
+    /// </summary>
     class OpenFileDialog
     {
         public String Filter = "";
@@ -17,19 +20,23 @@ namespace ImageSplitter
             this.DefaultExtension = DefaultExtension;
         }
 
+        /// <summary>
+        /// Shows the open file dialog.
+        /// </summary>
+        /// <returns>The path of the selected file or null if aborted.</returns>
         public String Show()
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog
             {
                 DefaultExt = this.DefaultExtension,
                 Filter = this.Filter
             };
 
-            bool? result = dlg.ShowDialog();
+            bool? result = dialog.ShowDialog();
 
             if (result == true)
             {
-                return dlg.FileName;
+                return dialog.FileName;
             }
             return null;
         }

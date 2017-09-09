@@ -11,15 +11,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Load config" Margin="10,53,10,0" VerticalAlignment="Top" Grid.Column="1" IsEnabled="False"/>
-        <Button Content="Save config" Margin="10,78,10,0" VerticalAlignment="Top" Grid.Column="1" IsEnabled="False"/>
+        <Button x:Name="Button_LoadConfig" Content="Load config" Margin="10,53,10,0" VerticalAlignment="Top" Grid.Column="1" IsEnabled="False" Click="Button_LoadConfig_Click"/>
         <Button x:Name="Button_LoadImage" Content="Load image" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Click="Button_LoadImage_Click"/>
         <Button x:Name="Button_Export" Content="Export" Grid.Column="1" Margin="10,160,10,0" VerticalAlignment="Top" Click="Button_Export_Click"/>
         <Image x:Name="Image_Small" Margin="10" Grid.Column="1" Height="80px" VerticalAlignment="Bottom"/>
 
 
-        <Image x:Name="Image_Primary" Margin="10" Grid.Column="0" Loaded="Image_Primary_Changed" SourceUpdated="Image_Primary_Changed" SizeChanged="Image_Primary_Changed" KeyDown="PrimaryArea_KeyDown"/>
-        <Canvas x:Name="Canvas_PrimaryOverlay" Margin="10" KeyDown="PrimaryArea_KeyDown" Focusable="True"/>
+        <Image x:Name="Image_Primary" Margin="10" Grid.Column="0" Loaded="Image_Primary_Changed" SourceUpdated="Image_Primary_Changed" SizeChanged="Image_Primary_Changed"/>
+        <Canvas x:Name="Canvas_PrimaryOverlay" Margin="10" Focusable="True"/>
         <TextBox x:Name="TextBox_ResolutionX" Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,137,0,0" TextWrapping="Wrap" Text="64" VerticalAlignment="Top" Width="30"/>
         <Label Content="x" HorizontalAlignment="Left" Width="20" Grid.Column="1" HorizontalContentAlignment="Center" Margin="40,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TextBox_ResolutionY" Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,137,10,0" TextWrapping="Wrap" Text="64" VerticalAlignment="Top" Width="30"/>

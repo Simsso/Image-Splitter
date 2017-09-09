@@ -77,9 +77,13 @@ namespace ImageSplitter
             }
         }
 
-        private void PrimaryArea_KeyDown(object sender, KeyEventArgs e)
+        private void Button_LoadConfig_Click(object sender, Windows.RoutedEventArgs e)
         {
-
+            String filePath = new OpenFileDialog(".json", "JSON Files (*.json)").Show();
+            if (filePath != null)
+            {
+                
+            }
         }
 
         private void Button_LoadImage_Click(object sender, EventArgs e)
