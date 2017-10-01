@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="PartProcessor.cs" />
     <Compile Include="Split.cs" />
+    <Compile Include="SplitConfig.cs" />
     <Compile Include="SplitOrientation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

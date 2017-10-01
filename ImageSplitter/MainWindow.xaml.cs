@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Input;
 using Windows = System.Windows;
 
@@ -18,6 +19,8 @@ namespace ImageSplitter
 
         private readonly Size defaultSize = new Size(64, 64);
 
+        private string imageName = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,6 +28,8 @@ namespace ImageSplitter
 
         private void SetImage(String path)
         {
+            imageName = Path.GetFileNameWithoutExtension(path);
+            Label_ImageName.Content = imageName;
             SetImage(Image.FromFile(path));
         }
 
@@ -34,30 +39,29 @@ namespace ImageSplitter
             this.Image_Small.Source = image.ToImageSource();
             this.Image_Primary.Source = image.ToImageSource();
             splitterControl = new SplitterControl(Canvas_PrimaryOverlay, Image_Primary, (Bitmap)originalImage);
+            UpdateSplitInfoLabel();
         }
 
         private void Image_Primary_Changed(object sender, EventArgs e)
         {
             splitterControl?.RenderLines();
+            UpdateSplitInfoLabel();
         }
 
         private void Button_Export_Click(object sender, EventArgs e)
         {
-            Bitmap[][] parts = splitterControl.GetParts();
-            using (PartProcessor processor = new PartProcessor(parts))
+            SplitConfig config = new SplitConfig
             {
-                processor.CropParts();
-                processor.ScaleParts(ParseSize());
-                parts = processor.Parts;
-                for (int x = 0; x < parts.Length; x++)
+                OutputPath = @"D:\Development\D2A\images",
+                FileNames = new string[][]
                 {
-                    for (int y = 0; y < parts[x].Length; y++)
-                    {
-                        parts[x][y].Save(String.Format("{0:00000}_{1:00000}.jpg", x, y));
-                        parts[x][y].Dispose();
-                    }
+                    new string[] { "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "ts", "js", "qs", "ks", "as" },
+                    new string[] { "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "td", "jd", "qd", "kd", "ad" },
+                    new string[] { "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "tc", "jc", "qc", "kc", "ac" },
+                    new string[] { "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "th", "jh", "qh", "kh", "ah" }
                 }
-            }
+            };
+            splitterControl.Export(config, ParseSize(), imageName ?? "");
             Windows.MessageBox.Show("Images saved successfully");
         }
 
@@ -77,15 +81,6 @@ namespace ImageSplitter
             }
         }
 
-        private void Button_LoadConfig_Click(object sender, Windows.RoutedEventArgs e)
-        {
-            String filePath = new OpenFileDialog(".json", "JSON Files (*.json)").Show();
-            if (filePath != null)
-            {
-                
-            }
-        }
-
         private void Button_LoadImage_Click(object sender, EventArgs e)
         {
             String filePath = new OpenFileDialog(".png", "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif").Show();
@@ -93,6 +88,14 @@ namespace ImageSplitter
             {
                 SetImage(filePath);
             }
+        }
+
+        private void UpdateSplitInfoLabel()
+        {
+            int verticalSplits = splitterControl?.GetSplits(SplitOrientation.Vertical).Length ?? 0,
+                horizontalSplist = splitterControl?.GetSplits(SplitOrientation.Horizontal).Length ?? 0;
+
+            Label_SplitInfo.Content = verticalSplits.ToString() + " x " + horizontalSplist.ToString();
         }
     }
 }

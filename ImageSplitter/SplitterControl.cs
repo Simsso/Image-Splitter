@@ -107,7 +107,7 @@ namespace ImageSplitter
         }
 
 
-        public Bitmap[][] GetParts()
+        private Bitmap[][] GetParts()
         {
             double[] horizontalSplits = GetSplits(SplitOrientation.Horizontal),
                 verticalSplits = GetSplits(SplitOrientation.Vertical);
@@ -131,6 +131,28 @@ namespace ImageSplitter
             }
 
             return parts;
+        }
+
+        public void Export(SplitConfig config, Size size, string imageName)
+        {
+            Bitmap[][] parts = GetParts();
+            using (PartProcessor processor = new PartProcessor(parts))
+            {
+                processor.CropParts();
+                processor.ScaleParts(size);
+                parts = processor.Parts;
+                for (int x = 0; x < parts.Length; x++)
+                {
+                    for (int y = 0; y < parts[x].Length; y++)
+                    {
+                        if (config.FileNames[y][x] == null) continue;
+
+                        string filePath = config.OutputPath + @"\" + config.FileNames[y][x] + "_" + imageName + ".jpg";
+                        parts[x][y].Save(string.Format(filePath, x, y));
+                        parts[x][y].Dispose();
+                    }
+                }
+            }
         }
     }
 }
