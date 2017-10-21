@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}</ProjectGuid>
+    <ProjectGuid>{CECE5879-3EBC-44A6-91A6-D8177CF63935}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ImageMosaiqueCreator</RootNamespace>
-    <AssemblyName>ImageMosaiqueCreator</AssemblyName>
+    <RootNamespace>MosaicCreator</RootNamespace>
+    <AssemblyName>MosaicCreator</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

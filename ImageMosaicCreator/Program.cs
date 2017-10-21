@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
-namespace ImageMosaiqueCreator
+namespace ImageMosaicCreator
 {
     /// <summary>
-    /// Creates an image mosaique out of many single, random images. The random images are taken from a directory and its subdirectories.
-    /// The static variables define the height and width of the mosaique parts and the number of horizontal (xCount) and vertical (yCount) elements.
+    /// Creates an image mosaic out of many single, randomly chosen images. The random images are taken from a directory and all its subdirectories.
+    /// The static variables define the height and width of the mosaic parts and the number of horizontal (xCount) and vertical (yCount) elements.
     /// The directory location is on the user desktop by default. This can be changed with the GetAllFilePaths method.
     /// </summary>
     class Program
