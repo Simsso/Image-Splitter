@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSplitter", "ImageSplit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResizer\ImageResizer.csproj", "{248E6F08-86E1-46B5-9134-B8D16D7E151F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaiqueCreator", "ImageMosaiqueCreator\ImageMosaiqueCreator.csproj", "{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{248E6F08-86E1-46B5-9134-B8D16D7E151F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248E6F08-86E1-46B5-9134-B8D16D7E151F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248E6F08-86E1-46B5-9134-B8D16D7E151F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C2F1A1-CAE7-4130-8B31-4781EBA0571E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.IO;
 namespace ImageResizer
 {
     /// <summary>
-    /// Resizes all images in a given input folder and stores them in the output folder.
+    /// Resizes all images in a given input folder to the desired dimensions and subsequently saves them to the output folder.
     /// </summary>
     class Program
     {
